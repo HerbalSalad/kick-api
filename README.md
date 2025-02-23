@@ -188,4 +188,3 @@ This project is licensed under the **GNU GENERAL PUBLIC LICENSE**.
 ## Created by
 
 This project was created by **Babz of KickTools**. For more information, visit [kicktools.app/ayybabz](https://kicktools.app/ayybabz).
-```
