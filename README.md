@@ -23,11 +23,18 @@ This project provides a lightweight JavaScript client for interacting with the [
 
 2. **Install dependencies**:
 
+   This project depends on the following packages:
+
+   - `axios` for making HTTP requests.
+   - `dotenv` for loading environment variables from a `.env` file.
+
+   To install the necessary dependencies, run:
+
    ```bash
-   npm install
+   npm install axios dotenv
    ```
 
-   This project depends on axios for HTTP requests. The crypto and querystring modules are built into Node.js and don’t require additional installation.
+   The `crypto` and `querystring` modules are built into Node.js and don’t require additional installation.
 
 ## Configuration
 
@@ -60,7 +67,7 @@ The `KickAuth.mjs` module handles the OAuth 2.1 flow. Here’s how to authentica
 #### Generate an authorization URL:
 
 ```javascript
-import { KickAuth } from './services/kickAuth.mjs';
+import { KickAuth } from "./services/kickAuth.mjs";
 
 const state = KickAuth.generateState();
 const { url, code_verifier } = KickAuth.getAuthorizationUrl(state);
@@ -100,7 +107,7 @@ const newTokens = await KickAuth.refreshTokenAccess(tokens.refresh_token);
 To invalidate an access or refresh token:
 
 ```javascript
-await KickAuth.revokeToken(tokens.access_token, 'access_token');
+await KickAuth.revokeToken(tokens.access_token, "access_token");
 ```
 
 ### Scopes
@@ -118,12 +125,12 @@ To change them, edit `KickAuth.KICK_SCOPES` in `services/kickAuth.mjs`.
 The `KickAPIClient.mjs` class provides methods to interact with the Kick API once you have an access token. Here’s how to use it:
 
 ```javascript
-import KickAPIClient from './services/kickApi.mjs';
+import KickAPIClient from "./services/kickApi.mjs";
 
 // Initialize the client
 const client = new KickAPIClient({
   clientId: process.env.KICK_CLIENT_ID,
-  clientSecret: process.env.KICK_CLIENT_SECRET,
+  clientSecret: process.env.KICK_CLIENT_SECRET
 });
 
 // Set the access token
@@ -140,8 +147,8 @@ console.log(channels);
 // Example: Send a chat message
 const chatResponse = await client.sendChatMessage({
   broadcaster_user_id: 101,
-  content: 'Hello, Kick!',
-  type: 'user',
+  content: "Hello, Kick!",
+  type: "user"
 });
 console.log(chatResponse);
 ```
@@ -154,7 +161,7 @@ Wrap API calls in `try...catch` blocks to handle potential errors:
 try {
   const users = await client.getUsers([69]);
 } catch (error) {
-  console.error('API Error:', error.message);
+  console.error("API Error:", error.message);
 }
 ```
 
